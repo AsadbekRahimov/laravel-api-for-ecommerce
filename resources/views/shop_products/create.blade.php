@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Edit Menu Image</h1>
+                    <h1>Create Shop Product</h1>
                 </div>
             </div>
         </div>
@@ -17,20 +17,22 @@
 
         <div class="card">
 
-            {!! Form::model($menuImage, ['route' => ['menuImages.update', $menuImage->id], 'method' => 'patch']) !!}
+            {!! Form::open(['route' => 'shopProducts.store']) !!}
 
             <div class="card-body">
+
                 <div class="row">
-                    @include('menu_images.fields')
+                    @include('shop_products.fields')
                 </div>
+
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('menuImages.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('shopProducts.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
-           {!! Form::close() !!}
+            {!! Form::close() !!}
 
         </div>
     </div>

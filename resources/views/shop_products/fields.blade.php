@@ -58,40 +58,106 @@
 </div>
 
 
+<!-- User Company Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('user_company_id', 'User Company Id:') !!}
+    {!! Form::number('user_company_id', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Shop Category Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('shop_category_id', 'Shop Category Id:') !!}
+    {!! Form::number('shop_category_id', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Package Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('package', 'Package:') !!}
+    {!! Form::text('package', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
+</div>
+
+<!-- Shop Option Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('shop_option', 'Shop Option:') !!}
+    {!! Form::text('shop_option', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Text Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('text', 'Text:') !!}
+    {!! Form::textarea('text', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Text Lang Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('text_lang', 'Text Lang:') !!}
+    {!! Form::text('text_lang', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Image Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('image', 'Image:') !!}
     {!! Form::text('image', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Target Field -->
+<!-- Shop Option Ids Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('target', 'Target:') !!}
-    {!! Form::text('target', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::label('shop_option_ids', 'Shop Option Ids:') !!}
+    {!! Form::text('shop_option_ids', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Location Field -->
+<!-- Shop Brand Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('location', 'Location:') !!}
-    {!! Form::text('location', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::label('shop_brand_id', 'Shop Brand Id:') !!}
+    {!! Form::number('shop_brand_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Url Field -->
+<!-- Related Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('url', 'Url:') !!}
-    {!! Form::text('url', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::label('related', 'Related:') !!}
+    {!! Form::text('related', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Role Field -->
+<!-- Shelf Life Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('role', 'Role:') !!}
-    {!! Form::text('role', null, ['class' => 'form-control']) !!}
+    {!! Form::label('shelf_life', 'Shelf Life:') !!}
+    {!! Form::number('shelf_life', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Menu Id Field -->
+<!-- Shelf Life Unit Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('menu_id', 'Menu Id:') !!}
-    {!! Form::number('menu_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('shelf_life_unit', 'Shelf Life Unit:') !!}
+    {!! Form::text('shelf_life_unit', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
+</div>
+
+<!-- Weight Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('weight', 'Weight:') !!}
+    {!! Form::number('weight', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Size Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('size', 'Size:') !!}
+    {!! Form::text('size', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Offer Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('offer', 'Offer:') !!}
+    {!! Form::text('offer', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Rating Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('rating', 'Rating:') !!}
+    {!! Form::number('rating', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Measure Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('measure', 'Measure:') !!}
+    {!! Form::text('measure', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
 </div>
 
 <!-- Deleted By Field -->

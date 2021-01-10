@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Menu Image Details</h1>
+                    <h1>Shop Product Details</h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-default float-right"
@@ -22,7 +22,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('menu_images.show_fields')
+                    @include('shop_products.show_fields')
                 </div>
             </div>
 
