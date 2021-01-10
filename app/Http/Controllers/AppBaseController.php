@@ -35,4 +35,12 @@ class AppBaseController extends Controller
             'message' => $message
         ], 200);
     }
+
+    public function search($message)
+    {
+        return Response::json([
+            'success' => true,
+            'message' => $message
+        ], 200);
+    }
 }
