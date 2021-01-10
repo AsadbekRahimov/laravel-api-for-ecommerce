@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class shop_productRepository
  * @package App\Repositories
- * @version January 9, 2021, 1:07 pm UTC
+ * @version January 10, 2021, 6:10 am UTC
 */
 
 class shop_productRepository extends BaseRepository

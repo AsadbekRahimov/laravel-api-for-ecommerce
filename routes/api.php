@@ -17,6 +17,64 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::prefix('/api/v1')->group(function () {
-    Route::resource('shop_products', App\Http\Controllers\API\shop_productAPIController::class);
-});
+
+// Route::resource('shopProducts', App\Http\Controllers\API\shop_productAPIController::class);
+// Route::resource('shopBanners', App\Http\Controllers\API\shop_bannerAPIController::class);
+// Route::resource('shopOrders', App\Http\Controllers\API\shop_bannerAPIController::class);
+
+
+Route::resource('shopBanners', App\Http\Controllers\API\shop_bannerAPIController::class);
+
+Route::resource('shopBrands', App\Http\Controllers\API\shop_brandAPIController::class);
+
+Route::resource('shopCatalogs', App\Http\Controllers\API\shop_catalogAPIController::class);
+
+Route::resource('shopCatalogWare', App\Http\Controllers\API\shop_catalog_wareAPIController::class);
+
+Route::resource('shopCategories', App\Http\Controllers\API\shop_categoryAPIController::class);
+
+Route::resource('shopChannels', App\Http\Controllers\API\shop_channelAPIController::class);
+
+Route::resource('shopCoupons', App\Http\Controllers\API\shop_couponAPIController::class);
+
+Route::resource('shopCouriers', App\Http\Controllers\API\shop_courierAPIController::class);
+
+Route::resource('shopDelays', App\Http\Controllers\API\shop_delayAPIController::class);
+
+Route::resource('shopDelayCauses', App\Http\Controllers\API\shop_delay_causeAPIController::class);
+
+Route::resource('shopDiscounts', App\Http\Controllers\API\shop_discountAPIController::class);
+
+Route::resource('shopElements', App\Http\Controllers\API\shop_elementAPIController::class);
+
+Route::resource('shopOffers', App\Http\Controllers\API\shop_offerAPIController::class);
+
+Route::resource('shopOptions', App\Http\Controllers\API\shop_optionAPIController::class);
+
+Route::resource('shopOptionBranches', App\Http\Controllers\API\shop_option_branchAPIController::class);
+
+Route::resource('shopOptionTypes', App\Http\Controllers\API\shop_option_typeAPIController::class);
+
+Route::resource('shopOrders', App\Http\Controllers\API\shop_orderAPIController::class);
+
+Route::resource('shopOrderItems', App\Http\Controllers\API\shop_order_itemAPIController::class);
+
+Route::resource('shopOverviews', App\Http\Controllers\API\shop_overviewAPIController::class);
+
+Route::resource('shopPackagings', App\Http\Controllers\API\shop_packagingAPIController::class);
+
+Route::resource('shopPayments', App\Http\Controllers\API\shop_paymentAPIController::class);
+
+Route::resource('shopProducts', App\Http\Controllers\API\shop_productAPIController::class);
+
+Route::resource('shopQuestions', App\Http\Controllers\API\shop_questionAPIController::class);
+
+Route::resource('shopRejectCauses', App\Http\Controllers\API\shop_reject_causeAPIController::class);
+
+Route::resource('shopReviews', App\Http\Controllers\API\shop_reviewAPIController::class);
+
+Route::resource('shopReviewOptions', App\Http\Controllers\API\shop_review_optionAPIController::class);
+
+Route::resource('shopShipments', App\Http\Controllers\API\shop_shipmentAPIController::class);
+
+Route::resource('treeShops', App\Http\Controllers\API\tree_shopAPIController::class);

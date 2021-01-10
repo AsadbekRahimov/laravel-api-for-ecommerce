@@ -59,94 +59,29 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *      ),
  *      @SWG\Property(
  *          property="user_company_id",
- *          description="Компания",
+ *          description="Магазин",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="shop_category_id",
- *          description="Категория",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="package",
- *          description="Упаковка",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="shop_option",
- *          description="Параметры опций",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="text",
- *          description="Полное описание продукта",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="text_lang",
- *          description="Переводы Полное описание продукта",
+ *          property="lang",
+ *          description="Язык",
  *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="image",
- *          description="Изображения",
+ *          description="Изображение",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="shop_option_ids",
- *          description="Опции продукта",
+ *          property="link",
+ *          description="Ссылка",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="shop_brand_id",
- *          description="Бренд",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="related",
- *          description="Связанные товары",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="shelf_life",
- *          description="Срок годности",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="shelf_life_unit",
- *          description="Единица измерения срока",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="weight",
- *          description="Вес в кг",
- *          type="number",
- *          format="number"
- *      ),
- *      @SWG\Property(
- *          property="size",
- *          description="Размеры",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="offer",
- *          description="Специальные предложения",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="rating",
- *          description="Рейтинг",
- *          type="number",
- *          format="number"
- *      ),
- *      @SWG\Property(
- *          property="measure",
- *          description="Единица измерения",
- *          type="string"
+ *          property="common",
+ *          description="Показать на главной?",
+ *          type="boolean"
  *      ),
  *      @SWG\Property(
  *          property="deleted_at",
