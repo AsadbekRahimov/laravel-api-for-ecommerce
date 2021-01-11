@@ -35,7 +35,7 @@
         <tbody>
         @foreach($shopOrderItems as $shopOrderItem)
             <tr>
-                <td>{{ $shopOrderItem->sort }}</td>
+                       <td>{{ $shopOrderItem->sort }}</td>
             <td>{{ $shopOrderItem->name }}</td>
             <td>{{ $shopOrderItem->name_lang }}</td>
             <td>{{ $shopOrderItem->tranz }}</td>
@@ -62,20 +62,16 @@
             <td>{{ $shopOrderItem->modified_at }}</td>
             <td>{{ $shopOrderItem->created_by }}</td>
             <td>{{ $shopOrderItem->modified_by }}</td>
-                <td width="120">
-                    {!! Form::open(['route' => ['shopOrderItems.destroy', $shopOrderItem->id], 'method' => 'delete']) !!}
-                    <div class='btn-group'>
-                        <a href="{{ route('shopOrderItems.show', [$shopOrderItem->id]) }}" class='btn btn-default btn-xs'>
-                            <i class="far fa-eye"></i>
-                        </a>
-                        <a href="{{ route('shopOrderItems.edit', [$shopOrderItem->id]) }}" class='btn btn-default btn-xs'>
-                            <i class="far fa-edit"></i>
-                        </a>
-                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                    </div>
-                    {!! Form::close() !!}
-                </td>
-            </tr>
+                       <td class=" text-center">
+                           {!! Form::open(['route' => ['shopOrderItems.destroy', $shopOrderItem->id], 'method' => 'delete']) !!}
+                           <div class='btn-group'>
+                               <a href="{!! route('shopOrderItems.show', [$shopOrderItem->id]) !!}" class='btn btn-light action-btn '><i class="fa fa-eye"></i></a>
+                               <a href="{!! route('shopOrderItems.edit', [$shopOrderItem->id]) !!}" class='btn btn-warning action-btn edit-btn'><i class="fa fa-edit"></i></a>
+                               {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger action-btn delete-btn', 'onclick' => 'return confirm("Are you sure want to delete this record ?")']) !!}
+                           </div>
+                           {!! Form::close() !!}
+                       </td>
+                   </tr>
         @endforeach
         </tbody>
     </table>

@@ -38,7 +38,7 @@
         <tbody>
         @foreach($shopReviews as $shopReview)
             <tr>
-                <td>{{ $shopReview->sort }}</td>
+                       <td>{{ $shopReview->sort }}</td>
             <td>{{ $shopReview->name }}</td>
             <td>{{ $shopReview->name_lang }}</td>
             <td>{{ $shopReview->title }}</td>
@@ -68,20 +68,16 @@
             <td>{{ $shopReview->modified_at }}</td>
             <td>{{ $shopReview->created_by }}</td>
             <td>{{ $shopReview->modified_by }}</td>
-                <td width="120">
-                    {!! Form::open(['route' => ['shopReviews.destroy', $shopReview->id], 'method' => 'delete']) !!}
-                    <div class='btn-group'>
-                        <a href="{{ route('shopReviews.show', [$shopReview->id]) }}" class='btn btn-default btn-xs'>
-                            <i class="far fa-eye"></i>
-                        </a>
-                        <a href="{{ route('shopReviews.edit', [$shopReview->id]) }}" class='btn btn-default btn-xs'>
-                            <i class="far fa-edit"></i>
-                        </a>
-                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                    </div>
-                    {!! Form::close() !!}
-                </td>
-            </tr>
+                       <td class=" text-center">
+                           {!! Form::open(['route' => ['shopReviews.destroy', $shopReview->id], 'method' => 'delete']) !!}
+                           <div class='btn-group'>
+                               <a href="{!! route('shopReviews.show', [$shopReview->id]) !!}" class='btn btn-light action-btn '><i class="fa fa-eye"></i></a>
+                               <a href="{!! route('shopReviews.edit', [$shopReview->id]) !!}" class='btn btn-warning action-btn edit-btn'><i class="fa fa-edit"></i></a>
+                               {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger action-btn delete-btn', 'onclick' => 'return confirm("Are you sure want to delete this record ?")']) !!}
+                           </div>
+                           {!! Form::close() !!}
+                       </td>
+                   </tr>
         @endforeach
         </tbody>
     </table>

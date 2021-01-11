@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 /**
  * @SWG\Definition(
  *      definition="shop_banner",
@@ -215,6 +216,7 @@ class shop_banner extends Model
         'modified_at' => 'nullable',
         'created_by' => 'nullable|integer',
         'modified_by' => 'nullable|integer'
-    ];  
+    ];
+
     
 }

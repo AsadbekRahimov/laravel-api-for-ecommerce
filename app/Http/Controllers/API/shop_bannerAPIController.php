@@ -9,8 +9,6 @@ use App\Repositories\shop_bannerRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
-use Illuminate\Support\Facades\DB;
-
 
 /**
  * Class shop_bannerController
@@ -66,13 +64,7 @@ class shop_bannerAPIController extends AppBaseController
             $request->get('skip'),
             $request->get('limit')
         );
-        // dd($shopBanners);
-        // if( $shopBanners["user_company_id"]){
-        //     $user_company= DB::table("user_company")->where("id", $shopBanners["user_company_id"])->pluck("name", "id");
-        //     // dd($user_company);
-        //     $shopBanners["user_company_id"]=$user_company;
-        // }
-       
+
         return $this->sendResponse($shopBanners->toArray(), 'Shop Banners retrieved successfully');
     }
 

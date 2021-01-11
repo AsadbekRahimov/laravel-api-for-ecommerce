@@ -1,41 +1,23 @@
 @extends('layouts.app')
-
+@section('title')
+    Shop Delays 
+@endsection
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Shop Delays</h1>
-                </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('shopDelays.create') }}">
-                        Add New
-                    </a>
-                </div>
+    <section class="section">
+        <div class="section-header">
+            <h1>Shop Delays</h1>
+            <div class="section-header-breadcrumb">
+                <a href="{{ route('shopDelays.create')}}" class="btn btn-primary form-btn">Shop Delay <i class="fas fa-plus"></i></a>
             </div>
         </div>
-    </section>
-
-    <div class="content px-3">
-
-        @include('flash::message')
-
-        <div class="clearfix"></div>
-
-        <div class="card">
-            <div class="card-body p-0">
+    <div class="section-body">
+       <div class="card">
+            <div class="card-body">
                 @include('shop_delays.table')
-
-                <div class="card-footer clearfix float-right">
-                    <div class="float-right">
-                        
-                    </div>
-                </div>
             </div>
-
-        </div>
-    </div>
-
+       </div>
+   </div>
+    
+    </section>
 @endsection
 

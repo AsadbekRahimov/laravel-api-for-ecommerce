@@ -1,31 +1,23 @@
 @extends('layouts.app')
-
+@section('title')
+    Shop Option Type Details 
+@endsection
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Shop Option Type Details</h1>
-                </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('posts.index') }}">
-                        Back
-                    </a>
-                </div>
-            </div>
+    <section class="section">
+        <div class="section-header">
+        <h1>Shop Option Type Details</h1>
+        <div class="section-header-breadcrumb">
+            <a href="{{ route('shopOptionTypes.index') }}"
+                 class="btn btn-primary form-btn float-right">Back</a>
         </div>
-    </section>
-
-    <div class="content px-3">
-        <div class="card">
-
+      </div>
+   @include('stisla-templates::common.errors')
+    <div class="section-body">
+           <div class="card">
             <div class="card-body">
-                <div class="row">
                     @include('shop_option_types.show_fields')
-                </div>
             </div>
-
-        </div>
+            </div>
     </div>
+    </section>
 @endsection

@@ -1,37 +1,33 @@
 @extends('layouts.app')
-
+@section('title')
+    Edit Shop Offer 
+@endsection
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1>Edit Shop Offer</h1>
+    <section class="section">
+            <div class="section-header">
+                <h3 class="page__heading m-0">Edit Shop Offer</h3>
+                <div class="filter-container section-header-breadcrumb row justify-content-md-end">
+                    <a href="{{ route('shopOffers.index') }}"  class="btn btn-primary">Back</a>
                 </div>
             </div>
-        </div>
-    </section>
+  <div class="content">
+              @include('stisla-templates::common.errors')
+              <div class="section-body">
+                 <div class="row">
+                     <div class="col-lg-12">
+                         <div class="card">
+                             <div class="card-body ">
+                                    {!! Form::model($shopOffer, ['route' => ['shopOffers.update', $shopOffer->id], 'method' => 'patch']) !!}
+                                        <div class="row">
+                                            @include('shop_offers.fields')
+                                        </div>
 
-    <div class="content px-3">
-
-        @include('adminlte-templates::common.errors')
-
-        <div class="card">
-
-            {!! Form::model($shopOffer, ['route' => ['shopOffers.update', $shopOffer->id], 'method' => 'patch']) !!}
-
-            <div class="card-body">
-                <div class="row">
-                    @include('shop_offers.fields')
-                </div>
-            </div>
-
-            <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('shopOffers.index') }}" class="btn btn-default">Cancel</a>
-            </div>
-
-           {!! Form::close() !!}
-
-        </div>
-    </div>
+                                    {!! Form::close() !!}
+                            </div>
+                         </div>
+                    </div>
+                 </div>
+              </div>
+   </div>
+  </section>
 @endsection

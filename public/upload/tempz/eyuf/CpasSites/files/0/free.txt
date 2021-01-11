@@ -1,0 +1,8 @@
+Token URL:http://10.10.3.60/admin/api/api/token
+Authorization URL:http://10.10.3.60/admin/api/api/authorize
+GraphQL URL:http://10.10.3.60/admin/api/api/gql
+Rest URL:http://10.10.3.60/admin/api/api/rest
+Client ID:f7906776b443532ef2974489810f4f253b38b88f1700a2e83f78276ff977dc8f
+Allowed Scopes:
+Please copy your secret as you will not be able to retrieve it later
+Client Secret:932337fc0b7048b085c0b13a797d651b

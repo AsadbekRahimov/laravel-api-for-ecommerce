@@ -36,11 +36,11 @@ class AppBaseController extends Controller
         ], 200);
     }
 
-    public function search($message)
+    public function search($query)
     {
         return Response::json([
             'success' => true,
-            'message' => $message
+            'message' => $query
         ], 200);
     }
 }

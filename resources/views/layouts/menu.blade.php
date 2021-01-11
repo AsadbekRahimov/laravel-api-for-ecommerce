@@ -1,248 +1,117 @@
-<li class="nav-item">
-    <a href="{{ route('shopProducts.index') }}"
-       class="nav-link {{ Request::is('shopProducts*') ? 'active' : '' }}">
-        <p>Shop Products</p>
+<li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
+    <a class="nav-link" href="/">
+        <i class=" fas fa-building"></i><span>Dashboard</span>
     </a>
 </li>
-
-
-<li class="nav-item">
-    <a href="{{ route('shopBanners.index') }}"
-       class="nav-link {{ Request::is('shopBanners*') ? 'active' : '' }}">
-        <p>Shop Banners</p>
-    </a>
+<li class="side-menus {{ Request::is('shopBanners*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopBanners.index') }}"><i class="fas fa-building"></i><span>Shop Banners</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopOrders.index') }}"
-       class="nav-link {{ Request::is('shopOrders*') ? 'active' : '' }}">
-        <p>Shop Orders</p>
-    </a>
+<li class="side-menus {{ Request::is('shopBrands*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopBrands.index') }}"><i class="fas fa-building"></i><span>Shop Brands</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopBanners.index') }}"
-       class="nav-link {{ Request::is('shopBanners*') ? 'active' : '' }}">
-        <p>Shop Banners</p>
-    </a>
+<li class="side-menus {{ Request::is('shopCatalogs*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopCatalogs.index') }}"><i class="fas fa-building"></i><span>Shop Catalogs</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopBrands.index') }}"
-       class="nav-link {{ Request::is('shopBrands*') ? 'active' : '' }}">
-        <p>Shop Brands</p>
-    </a>
+<li class="side-menus {{ Request::is('shopCatalogWare*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopCatalogWare.index') }}"><i class="fas fa-building"></i><span>Shop Catalog Ware</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopCatalogs.index') }}"
-       class="nav-link {{ Request::is('shopCatalogs*') ? 'active' : '' }}">
-        <p>Shop Catalogs</p>
-    </a>
+<li class="side-menus {{ Request::is('shopCategories*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopCategories.index') }}"><i class="fas fa-building"></i><span>Shop Categories</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopCatalogWare.index') }}"
-       class="nav-link {{ Request::is('shopCatalogWare*') ? 'active' : '' }}">
-        <p>Shop Catalog Ware</p>
-    </a>
+<li class="side-menus {{ Request::is('shopChannels*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopChannels.index') }}"><i class="fas fa-building"></i><span>Shop Channels</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopCategories.index') }}"
-       class="nav-link {{ Request::is('shopCategories*') ? 'active' : '' }}">
-        <p>Shop Categories</p>
-    </a>
+<li class="side-menus {{ Request::is('shopCoupons*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopCoupons.index') }}"><i class="fas fa-building"></i><span>Shop Coupons</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopChannels.index') }}"
-       class="nav-link {{ Request::is('shopChannels*') ? 'active' : '' }}">
-        <p>Shop Channels</p>
-    </a>
+<li class="side-menus {{ Request::is('shopCouriers*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopCouriers.index') }}"><i class="fas fa-building"></i><span>Shop Couriers</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopCoupons.index') }}"
-       class="nav-link {{ Request::is('shopCoupons*') ? 'active' : '' }}">
-        <p>Shop Coupons</p>
-    </a>
+<li class="side-menus {{ Request::is('shopDelays*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopDelays.index') }}"><i class="fas fa-building"></i><span>Shop Delays</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopCouriers.index') }}"
-       class="nav-link {{ Request::is('shopCouriers*') ? 'active' : '' }}">
-        <p>Shop Couriers</p>
-    </a>
+<li class="side-menus {{ Request::is('shopDelayCauses*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopDelayCauses.index') }}"><i class="fas fa-building"></i><span>Shop Delay Causes</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopDelays.index') }}"
-       class="nav-link {{ Request::is('shopDelays*') ? 'active' : '' }}">
-        <p>Shop Delays</p>
-    </a>
+<li class="side-menus {{ Request::is('shopDiscounts*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopDiscounts.index') }}"><i class="fas fa-building"></i><span>Shop Discounts</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopDelayCauses.index') }}"
-       class="nav-link {{ Request::is('shopDelayCauses*') ? 'active' : '' }}">
-        <p>Shop Delay Causes</p>
-    </a>
+<li class="side-menus {{ Request::is('shopElements*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopElements.index') }}"><i class="fas fa-building"></i><span>Shop Elements</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopDiscounts.index') }}"
-       class="nav-link {{ Request::is('shopDiscounts*') ? 'active' : '' }}">
-        <p>Shop Discounts</p>
-    </a>
+<li class="side-menus {{ Request::is('shopOffers*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopOffers.index') }}"><i class="fas fa-building"></i><span>Shop Offers</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopElements.index') }}"
-       class="nav-link {{ Request::is('shopElements*') ? 'active' : '' }}">
-        <p>Shop Elements</p>
-    </a>
+<li class="side-menus {{ Request::is('shopOptions*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopOptions.index') }}"><i class="fas fa-building"></i><span>Shop Options</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopOffers.index') }}"
-       class="nav-link {{ Request::is('shopOffers*') ? 'active' : '' }}">
-        <p>Shop Offers</p>
-    </a>
+<li class="side-menus {{ Request::is('shopOptionBranches*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopOptionBranches.index') }}"><i class="fas fa-building"></i><span>Shop Option Branches</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopOptions.index') }}"
-       class="nav-link {{ Request::is('shopOptions*') ? 'active' : '' }}">
-        <p>Shop Options</p>
-    </a>
+<li class="side-menus {{ Request::is('shopOptionTypes*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopOptionTypes.index') }}"><i class="fas fa-building"></i><span>Shop Option Types</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopOptionBranches.index') }}"
-       class="nav-link {{ Request::is('shopOptionBranches*') ? 'active' : '' }}">
-        <p>Shop Option Branches</p>
-    </a>
+<li class="side-menus {{ Request::is('shopOrders*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopOrders.index') }}"><i class="fas fa-building"></i><span>Shop Orders</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopOptionTypes.index') }}"
-       class="nav-link {{ Request::is('shopOptionTypes*') ? 'active' : '' }}">
-        <p>Shop Option Types</p>
-    </a>
+<li class="side-menus {{ Request::is('shopOrderItems*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopOrderItems.index') }}"><i class="fas fa-building"></i><span>Shop Order Items</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopOrders.index') }}"
-       class="nav-link {{ Request::is('shopOrders*') ? 'active' : '' }}">
-        <p>Shop Orders</p>
-    </a>
+<li class="side-menus {{ Request::is('shopOverviews*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopOverviews.index') }}"><i class="fas fa-building"></i><span>Shop Overviews</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopOrderItems.index') }}"
-       class="nav-link {{ Request::is('shopOrderItems*') ? 'active' : '' }}">
-        <p>Shop Order Items</p>
-    </a>
+<li class="side-menus {{ Request::is('shopPackagings*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopPackagings.index') }}"><i class="fas fa-building"></i><span>Shop Packagings</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopOverviews.index') }}"
-       class="nav-link {{ Request::is('shopOverviews*') ? 'active' : '' }}">
-        <p>Shop Overviews</p>
-    </a>
+<li class="side-menus {{ Request::is('shopPayments*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopPayments.index') }}"><i class="fas fa-building"></i><span>Shop Payments</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopPackagings.index') }}"
-       class="nav-link {{ Request::is('shopPackagings*') ? 'active' : '' }}">
-        <p>Shop Packagings</p>
-    </a>
+<li class="side-menus {{ Request::is('shopProducts*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopProducts.index') }}"><i class="fas fa-building"></i><span>Shop Products</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopPayments.index') }}"
-       class="nav-link {{ Request::is('shopPayments*') ? 'active' : '' }}">
-        <p>Shop Payments</p>
-    </a>
+<li class="side-menus {{ Request::is('shopQuestions*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopQuestions.index') }}"><i class="fas fa-building"></i><span>Shop Questions</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopProducts.index') }}"
-       class="nav-link {{ Request::is('shopProducts*') ? 'active' : '' }}">
-        <p>Shop Products</p>
-    </a>
+<li class="side-menus {{ Request::is('shopRejectCauses*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopRejectCauses.index') }}"><i class="fas fa-building"></i><span>Shop Reject Causes</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopQuestions.index') }}"
-       class="nav-link {{ Request::is('shopQuestions*') ? 'active' : '' }}">
-        <p>Shop Questions</p>
-    </a>
+<li class="side-menus {{ Request::is('shopReviews*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopReviews.index') }}"><i class="fas fa-building"></i><span>Shop Reviews</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopRejectCauses.index') }}"
-       class="nav-link {{ Request::is('shopRejectCauses*') ? 'active' : '' }}">
-        <p>Shop Reject Causes</p>
-    </a>
+<li class="side-menus {{ Request::is('shopReviewOptions*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopReviewOptions.index') }}"><i class="fas fa-building"></i><span>Shop Review Options</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopReviews.index') }}"
-       class="nav-link {{ Request::is('shopReviews*') ? 'active' : '' }}">
-        <p>Shop Reviews</p>
-    </a>
+<li class="side-menus {{ Request::is('shopShipments*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('shopShipments.index') }}"><i class="fas fa-building"></i><span>Shop Shipments</span></a>
 </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('shopReviewOptions.index') }}"
-       class="nav-link {{ Request::is('shopReviewOptions*') ? 'active' : '' }}">
-        <p>Shop Review Options</p>
-    </a>
+<li class="side-menus {{ Request::is('treeShops*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('treeShops.index') }}"><i class="fas fa-building"></i><span>Tree Shops</span></a>
 </li>
-
-
-<li class="nav-item">
-    <a href="{{ route('shopShipments.index') }}"
-       class="nav-link {{ Request::is('shopShipments*') ? 'active' : '' }}">
-        <p>Shop Shipments</p>
-    </a>
-</li>
-
-
-<li class="nav-item">
-    <a href="{{ route('treeShops.index') }}"
-       class="nav-link {{ Request::is('treeShops*') ? 'active' : '' }}">
-        <p>Tree Shops</p>
-    </a>
-</li>
-
 

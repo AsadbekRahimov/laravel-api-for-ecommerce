@@ -36,31 +36,31 @@
 
 <!-- Tranz Field -->
 <div class="form-group col-sm-6">
-    <div class="form-check">
-        {!! Form::hidden('tranz', 0, ['class' => 'form-check-input']) !!}
-        {!! Form::checkbox('tranz', '1', null, ['class' => 'form-check-input']) !!}
-        {!! Form::label('tranz', 'Tranz', ['class' => 'form-check-label']) !!}
-    </div>
+    {!! Form::label('tranz', 'Tranz:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('tranz', 0) !!}
+        {!! Form::checkbox('tranz', '1', null) !!}
+    </label>
 </div>
 
 
 <!-- Accept Field -->
 <div class="form-group col-sm-6">
-    <div class="form-check">
-        {!! Form::hidden('accept', 0, ['class' => 'form-check-input']) !!}
-        {!! Form::checkbox('accept', '1', null, ['class' => 'form-check-input']) !!}
-        {!! Form::label('accept', 'Accept', ['class' => 'form-check-label']) !!}
-    </div>
+    {!! Form::label('accept', 'Accept:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('accept', 0) !!}
+        {!! Form::checkbox('accept', '1', null) !!}
+    </label>
 </div>
 
 
 <!-- Active Field -->
 <div class="form-group col-sm-6">
-    <div class="form-check">
-        {!! Form::hidden('active', 0, ['class' => 'form-check-input']) !!}
-        {!! Form::checkbox('active', '1', null, ['class' => 'form-check-input']) !!}
-        {!! Form::label('active', 'Active', ['class' => 'form-check-label']) !!}
-    </div>
+    {!! Form::label('active', 'Active:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('active', 0) !!}
+        {!! Form::checkbox('active', '1', null) !!}
+    </label>
 </div>
 
 
@@ -70,7 +70,7 @@
     {!! Form::text('date', null, ['class' => 'form-control','id'=>'date']) !!}
 </div>
 
-@push('page_scripts')
+@push('scripts')
     <script type="text/javascript">
         $('#date').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
@@ -86,7 +86,7 @@
     {!! Form::text('date_deliver', null, ['class' => 'form-control','id'=>'date_deliver']) !!}
 </div>
 
-@push('page_scripts')
+@push('scripts')
     <script type="text/javascript">
         $('#date_deliver').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
@@ -156,7 +156,7 @@
     {!! Form::text('modified_at', null, ['class' => 'form-control','id'=>'modified_at']) !!}
 </div>
 
-@push('page_scripts')
+@push('scripts')
     <script type="text/javascript">
         $('#modified_at').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
@@ -176,4 +176,10 @@
 <div class="form-group col-sm-6">
     {!! Form::label('modified_by', 'Modified By:') !!}
     {!! Form::number('modified_by', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{{ route('shopShipments.index') }}" class="btn btn-light">Cancel</a>
 </div>
