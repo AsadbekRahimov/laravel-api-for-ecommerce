@@ -54,5 +54,20 @@ class BaseCollection extends ResourceCollection
         $response->setContent(json_encode($jsonResponse));
     }
 
+    public function getImagePath($category, $id, $fileNames, $multiple=false){
+        $images = explode(',' , $fileNames);
+        if($multiple){
+            $files=json_decode($images, true);
+            $images=[];
+            foreach($files as $fileName){
+                $images[]=asset('upload/uploaz/'.$category.'/image/'.$id.'/' . $fileName);
+            }
+            return $images;
+        }else{
+            $fileName=json_decode($images[0], true);
+            return asset('upload/uploaz/'.$category.'/image/'.$id.'/' . $fileName);
+        }
+               
+    }
 
 }

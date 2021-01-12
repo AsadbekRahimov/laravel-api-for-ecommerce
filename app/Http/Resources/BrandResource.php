@@ -18,16 +18,13 @@ class BrandResource extends BaseResource
      * @return array
      */
     public function toArray($request)
-    {
-        
+    {        
         $this->data = [
             'id' => $this->id,
             'name' => $this->name,
             'image' => $this->image
-        ];
-        
-        $this->data['image']=parent::getImagePath('ShopBrand', $this->id, $this->data['image'], true);
-        // dd($this->data['image']);
+        ];        
+        $this->data['image']=parent::getImagePath('ShopBrand', $this->id, $this->data['image']);
         return parent::toArray($request);
     }
 
