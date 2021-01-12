@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
+Route::post('/v1/login', [App\Http\Controllers\API\V1\Auth\LoginController::class, 'login']);
+
+Route::middleware('auth.jwt')->group(function () {
+    // Route::apiResource('brands','BrandController');
+    // Route::get('products/search', 'ProductController@search');
+    // Route::get('products/featured-products', 'ProductController@featuredProducts');
+    // Route::apiResource('products', 'ProductController');
+});
+Route::apiResource('brands',App\Http\Controllers\API\V1\BrandController::class);
 // Route::resource('shopProducts', App\Http\Controllers\API\shop_productAPIController::class);
 // Route::resource('shopBanners', App\Http\Controllers\API\shop_bannerAPIController::class);
 // Route::resource('shopOrders', App\Http\Controllers\API\shop_bannerAPIController::class);
@@ -79,7 +88,7 @@ Route::resource('shopShipments', App\Http\Controllers\API\shop_shipmentAPIContro
 
 Route::resource('treeShops', App\Http\Controllers\API\tree_shopAPIController::class);
 
-// Route::resource('shop_banners', App\Http\Controllers\API\shop_bannerAPIController::class);
+// Route::resource('homePageAPIController', App\Http\Controllers\API\HomePageAPIController::class);
 
 // Route::resource('shop_brands', App\Http\Controllers\API\shop_brandAPIController::class);
 

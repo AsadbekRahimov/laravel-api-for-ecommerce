@@ -39,7 +39,7 @@ class api_generator_commands extends Command
             echo $table." ";
             if(preg_match("/shop/", $table)){
                 // $table="shop_order";
-                Artisan::call('infyom:api_scaffold '.$this->dashesToCamelCase($table).' --fromTable --tableName='.$table.' ');
+                Artisan::call('infyom:api_scaffold '.$this->dashesToCamelCase($table).' --fromTable --tableName='.$table.' --paginate=20 ');
                 //php artisan infyom:api_scaffold auto --fromTable --tableName=auto --skip=views,controllers
                 //infyom:api_scaffold auto --fromTable --tableName=auto --skip=views,controllers,routes
             }
