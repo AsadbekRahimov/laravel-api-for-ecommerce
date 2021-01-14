@@ -6,6 +6,49 @@
     },
     "basePath": "/api/v1",
     "paths": {
+        "/homeShopBrands?search={search}": {
+            "get": {
+                "tags": [
+                    "HomePage"
+                ],
+                "summary": "Get a listing of the shop_brands.",
+                "description": "Get shop_brands",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "search field of shop_banner",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/shop_brand"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/shopBanners": {
             "get": {
                 "tags": [

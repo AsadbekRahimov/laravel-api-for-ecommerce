@@ -27,6 +27,8 @@ Route::middleware('auth.jwt')->group(function () {
     // Route::apiResource('products', 'ProductController');
 });
 Route::apiResource('brands',App\Http\Controllers\API\V1\BrandController::class);
+Route::get('homeShopBrands', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopBrands']);
+
 // Route::resource('shopProducts', App\Http\Controllers\API\shop_productAPIController::class);
 // Route::resource('shopBanners', App\Http\Controllers\API\shop_bannerAPIController::class);
 // Route::resource('shopOrders', App\Http\Controllers\API\shop_bannerAPIController::class);

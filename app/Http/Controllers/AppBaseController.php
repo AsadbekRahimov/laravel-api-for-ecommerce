@@ -36,12 +36,35 @@ class AppBaseController extends Controller
         ], 200);
     }
 
-    public function search($query, $table_id )
+    public function search($query, $table_id)
     {
 
         // return Response::json([
         //     'success' => true,
         //     'message' => $query
         // ], 200);
+    }
+
+    public function getImagePath($category, $id, $fileNames, $multiple=false){
+        if(strlen($fileNames)<3){
+            return null;
+        }
+        $fileNames=str_replace('"', '', $fileNames);
+        $fileNames=str_replace(' ', '', $fileNames);
+        
+        $images = explode(',' , $fileNames);        
+        if($multiple){        
+            $all_images=[];
+            if(is_array($images)){
+                for($i=0; $i<count($images); $i++){                 
+                    $all_images[]=asset('upload/uploaz/'.$category.'/image/'.$id.'/' . $images[$i]);
+                }
+            }            
+            return json_encode($all_images);
+        }else{
+            // $fileName=json_decode($images[0], true);
+            return asset('upload/uploaz/'.$category.'/image/'.$id.'/' . $images[0]);
+        }
+               
     }
 }

@@ -36,11 +36,11 @@ class BaseResource extends JsonResource
         $images = explode(',' , $fileNames);
         if($multiple){
             $files=json_decode($images, true);
-            $images=[];
+            $all_images=[];
             foreach($files as $fileName){
-                $images[]=asset('upload/uploaz/'.$category.'/image/'.$id.'/' . $fileName);
+                $all_images[]=asset('upload/uploaz/'.$category.'/image/'.$id.'/' . $fileName);
             }
-            return $images;
+            return $all_images;
         }else{
             $fileName=json_decode($images[0], true);
             return asset('upload/uploaz/'.$category.'/image/'.$id.'/' . $fileName);
