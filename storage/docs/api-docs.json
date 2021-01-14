@@ -6,10 +6,130 @@
     },
     "basePath": "/api/v1",
     "paths": {
-        "/homeShopBrands?search={search}": {
+        "/homeShopBrands": {
             "get": {
                 "tags": [
                     "HomePage"
+                ],
+                "summary": "Get a listing of the shop_brands.",
+                "description": "Get shop_brands",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/shop_brand"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/searchPageWhile": {
+            "get": {
+                "tags": [
+                    "SearchPage"
+                ],
+                "summary": "Get a listing of the shop_brands.",
+                "description": "Get shop_brands",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "search field of shop_banner",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/shop_brand"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/searchPageBefore": {
+            "get": {
+                "tags": [
+                    "SearchPage"
+                ],
+                "summary": "Get a listing of the shop_elements.",
+                "description": "Get shop_elements",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "search field of shop_element",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/shop_element"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/searchPageAfter": {
+            "get": {
+                "tags": [
+                    "SearchPage"
                 ],
                 "summary": "Get a listing of the shop_brands.",
                 "description": "Get shop_brands",

@@ -15,16 +15,7 @@ use Response;
 
 class HomePageController extends AppBaseController
 {
-    
-    // private $shopBrandRepository;
-
-    // public function __construct(shop_brandRepository $shopBrandRepo)
-    // {
-    //     $this->shopBrandRepository = $shopBrandRepo;
-    // }
-
     /**
-     * @param Request $request
      * @return Response
      *
      * @SWG\Get(
@@ -33,13 +24,6 @@ class HomePageController extends AppBaseController
      *      tags={"HomePage"},
      *      description="Get shop_brands",
      *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="search",
-     *          description="search field of shop_banner",
-     *          type="string",
-     *          required=false,
-     *          in="path"
-     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -62,12 +46,12 @@ class HomePageController extends AppBaseController
      *      )
      * )
      */
-    public function homeShopBrands(Request $request)
+    public function homeShopBrands()
     {
         $items = shop_brand::all('id', 'name', 'image');
-        if($request->has('search')){
-            $items=$items->where('name', '=',$request->search);
-        }
+        // if($request->has('search')){
+        //     $items=$items->where('name', '=',$request->search);
+        // }
         
         foreach($items as $item){
             if($item['image']){

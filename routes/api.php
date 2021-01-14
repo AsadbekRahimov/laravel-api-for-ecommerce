@@ -28,7 +28,9 @@ Route::middleware('auth.jwt')->group(function () {
 });
 Route::apiResource('brands',App\Http\Controllers\API\V1\BrandController::class);
 Route::get('homeShopBrands', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopBrands']);
-
+Route::get('searchPageWhile', [App\Http\Controllers\API\V1\SearchPageController::class, 'searchPageWhile']);
+Route::get('searchPageBefore', [App\Http\Controllers\API\V1\SearchPageController::class, 'searchPageBefore']);
+Route::get('searchPageAfter', [App\Http\Controllers\API\V1\SearchPageController::class, 'searchPageAfter']);
 // Route::resource('shopProducts', App\Http\Controllers\API\shop_productAPIController::class);
 // Route::resource('shopBanners', App\Http\Controllers\API\shop_bannerAPIController::class);
 // Route::resource('shopOrders', App\Http\Controllers\API\shop_bannerAPIController::class);
