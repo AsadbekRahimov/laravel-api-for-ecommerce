@@ -50,6 +50,8 @@ class AppBaseController extends Controller
             return null;
         }
         $fileNames=str_replace('"', '', $fileNames);
+        $fileNames=str_replace('[', '', $fileNames);
+        $fileNames=str_replace(']', '', $fileNames);
         $fileNames=str_replace(' ', '', $fileNames);
         
         $images = explode(',' , $fileNames);        
