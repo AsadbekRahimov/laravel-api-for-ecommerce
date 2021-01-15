@@ -40,7 +40,7 @@
                 }
             }
         },
-        "/homeShopCategory": {
+        "/homeShopCategories": {
             "get": {
                 "tags": [
                     "HomePage"
@@ -62,6 +62,40 @@
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/shop_category"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/homeShopOffers": {
+            "get": {
+                "tags": [
+                    "HomePage"
+                ],
+                "summary": "Get a listing of the shop_offer.",
+                "description": "Get shop_offer",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/shop_offer"
                                     }
                                 },
                                 "message": {

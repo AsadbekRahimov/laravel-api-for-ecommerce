@@ -71,6 +71,7 @@ class AppBaseController extends Controller
     }
 
     public function filter_items($request, $items){ 
+        // Searching items 
         // if($request->has('search')){
         //     $items=$items->where('name', 'like', '%'.$request['search'].'%');
         // }  
@@ -86,11 +87,22 @@ class AppBaseController extends Controller
             $items=$items->get();
         }
 
+        //This is used
         // foreach($items as $item){
+        //     $item=(array)($item);
         //     if($item['image']){
-        //         $item['image']=$this->getImagePath('ShopCategory', $item['id'], $item['image']);
+        //         $item['image']=$this->getImagePath('ShopBanner', $item['id'], $item['image']);
         //     }
         // }
+
+        //
+        // foreach($items as $item){
+        //     // $item=(array)($item);
+        //     if($item->image){
+        //         $item->image=$this->getImagePath('ShopBanner', $item->id, $item->image);
+        //     }
+        // }
+
         return $items;
     }
 }

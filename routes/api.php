@@ -23,7 +23,7 @@ Route::post('/v1/login', [App\Http\Controllers\API\V1\Auth\LoginController::clas
 Route::middleware('auth.jwt')->group(function () {
 });
 Route::get('homeShopBanners', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopBanners']);
-Route::get('homeShopCategory', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopCategory']);
+Route::get('homeShopCategories', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopCategories']);
 Route::get('homeShopOffers', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopOffers']);
 
 Route::get('searchPageWhile', [App\Http\Controllers\API\V1\SearchPageController::class, 'searchPageWhile']);
