@@ -8,6 +8,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\shop_banner;
 use App\Models\shop_category;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class shop_brandController
@@ -49,21 +50,14 @@ class HomePageController extends AppBaseController
      */
     public function homeShopBanners(Request $request)
     {
-        $items = shop_banner::all('id', 'image');
-        // if($request->has('search')){
-        //     $items=$items->where('name', '=',$request->search);
-        // }
+        $items= DB::table('shop_banner')->select(['id', 'image']);
+        $items=$this->filter_items($request, $items); 
         
         foreach($items as $item){
             if($item['image']){
                 $item['image']=$this->getImagePath('ShopBanner', $item['id'], $item['image']);
             }
         }
-        if($request->has('per_page')){
-            $per_page = $request->get('per_page', 20);
-            $items = $items->paginate($per_page);
-        }
-        
         return $this->sendResponse($items->toArray(), 'Shop Banners retrieved successfully');
     }
 
@@ -100,35 +94,24 @@ class HomePageController extends AppBaseController
      */
     public function homeShopCategory(Request $request)
     {
-        $items = shop_category::get(['id', 'icon', 'name']);
-        // if($request->has('search')){
-        //     $items=$items->where('name', '=',$request->search);
-        // }
-        
-        // foreach($items as $item){
-        //     if($item['image']){
-        //         $item['image']=$this->getImagePath('ShopCategory', $item['id'], $item['image']);
-        //     }
-        // }
-        // if($request->has('per_page')){
-        //     $per_page = $request->get('per_page', 20);
-        //     $items = $items->paginate($per_page);
-        // }
+        $items= DB::table('shop_category')->select(['id', 'icon', 'name']);
+        if($request->has('search')){
+            $items=$items->where('name', 'like', '%'.$request['search'].'%');
+        }     
+        $items=$this->filter_items($request, $items);
         
         return $this->sendResponse($items->toArray(), 'Shop Categories retrieved successfully');
     }
-
-
 
 
     /**
      * @return Response
      *
      * @SWG\Get(
-     *      path="/homeShopBrands",
-     *      summary="Get a listing of the shop_brands.",
+     *      path="/homeShopCategory",
+     *      summary="Get a listing of the shop_category.",
      *      tags={"HomePage"},
-     *      description="Get shop_brands",
+     *      description="Get shop_category",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -142,7 +125,7 @@ class HomePageController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/shop_brand")
+     *                  @SWG\Items(ref="#/definitions/shop_category")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -152,21 +135,20 @@ class HomePageController extends AppBaseController
      *      )
      * )
      */
-    public function homeShopBrands()
+    public function homeShopOffers(Request $request)
     {
-        $items = shop_brand::all('id', 'name', 'image');
-        // if($request->has('search')){
-        //     $items=$items->where('name', '=',$request->search);
-        // }
+        $items= DB::table('shop_offer')->select(['id', 'name', 'shop_catalog_id']);
+        if($request->has('search')){
+            $items=$items->where('name', 'like', '%'.$request['search'].'%');
+        }     
+        $items=$this->filter_items($request, $items);
         
-        foreach($items as $item){
-            if($item['image']){
-                $item['image']=$this->getImagePath('ShopBrand', $item['id'], $item['image']);
-            }
-        }
-        
-        return $this->sendResponse($items->toArray(), 'Shop Brands retrieved successfully');
+        return $this->sendResponse($items->toArray(), 'Shop Categories retrieved successfully');
     }
 
+
+
+
+    
     
 }

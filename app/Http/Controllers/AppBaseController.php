@@ -69,4 +69,28 @@ class AppBaseController extends Controller
         }
                
     }
+
+    public function filter_items($request, $items){ 
+        // if($request->has('search')){
+        //     $items=$items->where('name', 'like', '%'.$request['search'].'%');
+        // }  
+        if($request->has('skip')){
+            $items=$items->skip($request['skip']);
+        }
+        if($request->has('limit')){
+            $items=$items->limit($request['limit']);
+        }
+        if($request->has('paginate')){
+            $items=$items->paginate($request['paginate']);
+        }else{
+            $items=$items->get();
+        }
+
+        // foreach($items as $item){
+        //     if($item['image']){
+        //         $item['image']=$this->getImagePath('ShopCategory', $item['id'], $item['image']);
+        //     }
+        // }
+        return $items;
+    }
 }
