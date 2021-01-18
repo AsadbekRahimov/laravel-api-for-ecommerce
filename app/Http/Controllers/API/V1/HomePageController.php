@@ -151,29 +151,91 @@ class HomePageController extends AppBaseController
     public function homeShopOffers(Request $request)
     {
         try {
-            $items= DB::table('shop_offer')->select(['id', 'shop_catalog_id', 'name']);//->join('shop_catalog', 'shop_offer.shop_catalog_id','=', 'shop_catalog.id');
+            $items= DB::table('shop_offer')
+                // ->join('shop_catalog', 'shop_catalog.id','shop_offer.shop_catalog_id')
+                ->select(['id','shop_catalog_id',  'name']);
+                
+                
+                // ->whereHas("shop_catalog", function($query) use($shop_catalog_id) {
+                //         $query->where("shop_catalog_id", "=", $shop_catalog_id);
+                // });
             if($request->has('search')){
                 $items=$items->where('name', 'like', '%'.$request['search'].'%');
             } 
             $items=$this->filter_items($request, $items); 
             
-            // foreach($items as $item){
-            //     $item=(array)($item);
-            //     if($item['image']){
-            //         $item['image']=$this->getImagePath('ShopCategory', $item['id'], $item['image']);
-            //     }
-            // }
             if ($items->isEmpty()) {
                 return $this->sendError('Shop Offers not found');
             }
+
+            foreach($items as $item){
+                $catalogs=DB::table('shop_catalog')->where('id', '=', $item->shop_catalog_id)->select(['id','shop_element_id', 'user_company_id', 'name'])->get();
+                foreach($catalogs as $catalog){
+                    $elements=DB::table('shop_element')->where('id', '=', $catalog->shop_element_id)->select(['id','shop_product_id'])->get();
+                    foreach($elements as $element){
+                        $products=DB::table('shop_product')->where('id', '=', $element->shop_product_id)->select(['id','image'])->get();
+                        foreach($products as $product){
+                            $product->image=$this->getImagePath('ShopBanner', $product->id, $product->image);
+                        }                        
+                        $element->shop_product_id=$products;
+                    }
+                    $user_companies=DB::table('user_company')->where('id', '=', $catalog->user_company_id)->select(['id','name'])->get();
+                    $catalog->shop_element_id=$elements;
+                    $catalog->user_company_id=$user_companies;
+                }
+                $item->shop_catalog_id=$catalogs;
+            }
+
             return $this->sendResponse($items->toArray(), 'Shop Offers retrieved successfully');
         } catch (Exception $e) {
             return $this->sendError('System error: '.$e->getMessage());            
         } 
     }
+    // $items={
+    //     'name'=>'Hello',
+    //     'product_id'
+    // }
+    // $foreign_key='product_id'
+    // $elements={'name','image'}
+    public function nestForeignKeys($items, $foreign_key, $elements){
+        foreach(array_keys((array)$items) as $key){
+            if(endsWith( $key, $foreign_key)){
+                foreach($elements as $element){
+                    $products=DB::table('shop_product')->where('id', '=', $element->shop_product_id)->select(['id','image'])->get();
+                    foreach($products as $product){
+                        $product->image=$this->getImagePath('ShopBanner', $product->id, $product->image);
+                    }                        
+                    $element->shop_product_id=$products;
+                }
+            }   
+        }
+        return true;
+    }
+
+    /**
+     * cards [
+     * {
+     *  altType: 1,
+     *  altText: "Часто покупаете?",
+     *  sale:22,
+     *  hasDelivery: false,
+     *  inPremium:0,
+     *  rdb: 1,
+     *  unit:'UZS',
+     *  oldPrice: 13990,
+     *  newPrice: 17990,
+     *  text: "Samsunng S6",
+     *   
+     * },
+     * {...},
+     * ...
+     * ]
+    */
 
 
 
+
+    
 
     
     
