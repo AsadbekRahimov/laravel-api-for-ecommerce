@@ -15,11 +15,10 @@ class HomePage extends Page
     public $title;
     public $meta;
 
-    public function __construct(Page $homePage)
+    public function __construct()
     {
-        $homePage->meta="";
-        $homePage->title="Home Page";
-        $this->homePage = $homePage;
+        $this->meta="";
+        $this->title="Home Page";
     }
 
 
