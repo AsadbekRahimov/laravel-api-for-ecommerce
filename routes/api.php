@@ -25,6 +25,8 @@ Route::middleware('auth.jwt')->group(function () {
 Route::get('homeShopBanners', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopBanners']);
 Route::get('homeShopCategories', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopCategories']);
 Route::get('homeShopOffers', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopOffers']);
+Route::get('getHomePage', [App\Http\Controllers\API\V1\HomePageController::class, 'getHomePage']);
+Route::get('testHomePage', [App\Http\Controllers\API\V1\HomePageController::class, 'testHomePage']);
 
 Route::get('searchPageWhile', [App\Http\Controllers\API\V1\SearchPageController::class, 'searchPageWhile']);
 Route::get('searchPageBefore', [App\Http\Controllers\API\V1\SearchPageController::class, 'searchPageBefore']);

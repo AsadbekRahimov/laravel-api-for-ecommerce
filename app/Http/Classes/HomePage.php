@@ -3,22 +3,35 @@
 namespace App\Http\Classes;
 
 class HomePage extends Page
-{
-    /** @var  homePage */
-    protected $homePage;
+{   
     /**
-     * Vars
-     *
-     * @var string
-     * @var string
+     * @var CatalogComponent[] $catalogs_component
+     * 
      */
-    public $title;
-    public $meta;
+    public $catalogs_component;
+    /**
+     * @var BannerComponent[] $banners_component
+     */
+    public $banners_component;
+    /**
+     * @var ProductComponent[] $products_component
+     */
+    public $products_component;
+    /**
+     * @var MarketComponent[] $markets_component
+     */
+    public $markets_component;
+    
+    /**
+     * @var CategoryComponent[] $banners_component
+     */
+    public $categories_component;
 
     public function __construct()
     {
         $this->meta="";
         $this->title="Home Page";
+        $this->lang="en";
     }
 
 

@@ -13,4 +13,5 @@ class Page
      */
     public $title;
     public $meta;
+    public $lang;
 }
