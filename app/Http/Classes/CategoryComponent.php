@@ -2,9 +2,8 @@
 
 namespace App\Http\Classes;
 
-class CategoryItem
+class CategoryComponent
 {    
-    public $type;
     public $id;
     public $name;
     /**
