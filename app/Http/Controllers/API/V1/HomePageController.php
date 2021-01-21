@@ -13,7 +13,6 @@ use Exception;
  */
 
 use App\Http\Classes\HomePage;
-use App\Http\Classes\CatalogItem;
 use App\Http\Classes\BannerItem;
 use App\Http\Classes\MarketItem;
 use App\Http\Classes\CategoryItem;
@@ -70,7 +69,13 @@ class HomePageController extends AppBaseController
                 return $categoryComponent;                                             
         });
         $homePage->categories_component[$category_types[1]]=DB::table('shop_category')
-            ->select('id','name','image')->whereNull('shop_category_id')->inRandomOrder()->get()->chunk(6);
+            ->select('id','name','image')->whereNull('shop_category_id')->inRandomOrder()->get()->map(function ($value) {
+                $categoryItem= new CategoryItem();
+                $categoryItem->id=$value->id;
+                $categoryItem->name=$value->name;
+                $categoryItem->image=$this->getImagePath('ShopCategory', $value->id, $value->image);
+                return $categoryItem;
+            })->chunk(6);
         
             
         
@@ -81,10 +86,30 @@ class HomePageController extends AppBaseController
     public function testHomePage(){
 
         $homePage = new HomePage();
-        $product_types=array("bestSeller", "premium", "hotSelling");
-        $homePage->catalogs_component[] = DB::table('shop_element')->select('id','name')->get()->groupBy('tags')->map(function ($group) use($product_types){
-            
-        });
+        $product_types=array("bestSeller", "premium", "hotSelling", "new");
+        $homePage->catalogs_component[] = DB::table('shop_element')->select('id', 'shop_product_id', 'catalog_cheapest', 'name', 'tags')->get()
+            ->map(function ($item) use($product_types){
+                $product=DB::table('shop_product')->where('id', $item->shop_product_id)->select('id', 'image', 'measure')->first();                
+                $catalog=DB::table('shop_catalog')->where('id', $item->catalog_cheapest)->select('id', 'price', 'price_old', 'currency')->first();
+                // dd($product);
+                if($product && $catalog){
+                    $productItem=new ProductItem();
+                    $productItem->id=$item->id;
+                    $productItem->name=$item->name;
+                    $productItem->image=$this->getImagePath('ShopProduct', $product->id, $product->image);
+                    // $productItem->discount=$item->discount;
+                    $productItem->tags=$item->tags;
+                    // $productItem->rating=$item->rating;
+                    $productItem->current_price=$catalog->price;
+                    $productItem->old_price=$catalog->price_old;
+                    $productItem->currency=$catalog->currency;
+                    // $productItem->currencyType=$item->currencyType;
+                    $productItem->measure=$product->measure;
+                    // $productItem->measureStep=$item->measureStep;
+                    return $productItem;
+                }
+                
+            });
         return $this->sendResponse($homePage, 'Home Page retrieved successfully');
 
     }

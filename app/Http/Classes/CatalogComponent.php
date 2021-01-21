@@ -4,10 +4,10 @@ namespace App\Http\Classes;
 
 class CatalogComponent 
 {
-    public $type;
+    public $category_id;
+    public $banner_id;
     /**
-     * @var CatalogItem[] $catalogs
-     * 
+     * @var ProductItem[] $products
      */
-    public $catalogs;
+    public $products;
 }

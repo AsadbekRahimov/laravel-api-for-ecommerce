@@ -2,10 +2,9 @@
 
 namespace app\Http\Classes;
 
-class ProductItem
+class ProductComponent
 {
     public $type;
-    public $category_name;
     /**
      * @var ProductItem[] $products
      */
