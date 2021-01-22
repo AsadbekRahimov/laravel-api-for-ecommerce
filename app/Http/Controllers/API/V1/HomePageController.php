@@ -101,6 +101,8 @@ class HomePageController extends AppBaseController
                 $productItem->currency=$catalog->currency;
                 $productItem->measure=$product->measure;
                 return $productItem;
+            }else{
+                // continue;
             }            
         });//->groupBy('category_id');
 
@@ -114,7 +116,7 @@ class HomePageController extends AppBaseController
         ->map(function ($company) {
             $marketComponent=new MarketComponent();
             $all = $company->map(function ($product) use($marketComponent) {                
-                $marketComponent->logo=$this->getImagePath('ShopProduct', $product->company_id, $product->company_logo);
+                $marketComponent->logo=$this->getImagePath('UserCompany', $product->company_id, $product->company_logo);
                 $marketComponent->name=$product->company_name;
                 $marketComponent->title=$product->company_text;
                 $marketItem=new MarketItem();
@@ -131,27 +133,7 @@ class HomePageController extends AppBaseController
     public function testHomePage(){
 
         $homePage = new HomePage();
-        $homePage->markets_component[] = DB::table('shop_catalog as catalog')
-        ->join('user_company as company', 'company.id', '=', 'catalog.user_company_id')
-        ->join('shop_element as element', 'element.id', '=', 'catalog.shop_element_id')
-        ->join('shop_product as product', 'product.id', '=', 'element.shop_product_id')
-        ->select('element.id as element_id', 'product.id as product_id','company.id as company_id', 'company.name as company_name', 
-        'company.text_short as company_text', 'company.rating', 'company.photo as company_logo', 'product.image as product_image', 'catalog.price as product_price')
-        ->inRandomOrder()->get()->groupBy('company_id')
-        ->map(function ($company) {
-            $marketComponent=new MarketComponent();
-            $all = $company->map(function ($product) use($marketComponent) {                
-                $marketComponent->logo=$this->getImagePath('ShopProduct', $product->company_id, $product->company_logo);
-                $marketComponent->name=$product->company_name;
-                $marketComponent->title=$product->company_text;
-                $marketItem=new MarketItem();
-                $marketItem->id=$product->element_id;
-                $marketItem->image=$this->getImagePath('ShopProduct', $product->product_id, $product->product_image);
-                $marketItem->price=$product->product_price;
-                $marketComponent->products[]=$marketItem;
-            });
-            return $marketComponent;
-        });
+        
         return $this->sendResponse($homePage, 'Home Page retrieved successfully');
 
     }
