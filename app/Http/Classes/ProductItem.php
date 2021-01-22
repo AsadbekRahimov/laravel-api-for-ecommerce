@@ -9,7 +9,7 @@ class ProductItem
     public $image;
     public $amount;
     // public $discount;
-    public $tags;
+    public $tag;
     public $rating;
     public $current_price;
     public $old_price;

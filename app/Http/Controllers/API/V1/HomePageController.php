@@ -94,7 +94,7 @@ class HomePageController extends AppBaseController
                 $productItem->image=$this->getImagePath('ShopProduct', $product->id, $product->image);
                 // $productItem->discount=$item->discount;
                 $productItem->amount=$catalog->amount;
-                $productItem->tags=json_decode($item->tags);
+                $productItem->tag=(strcmp($item->tags, '""') !== 0)?json_decode($item->tags):null;
                 $productItem->rating=$item->rating;
                 $productItem->current_price=$catalog->price;
                 $productItem->old_price=$catalog->price_old;
