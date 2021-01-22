@@ -7,7 +7,8 @@ class ProductItem
     public $id;
     public $name = 'Product Name';
     public $image;
-    public $discount;
+    public $amount;
+    // public $discount;
     public $tags;
     public $rating;
     public $current_price;
@@ -15,7 +16,7 @@ class ProductItem
     public $currency = 'сум';
     public $currencyType = ProductItem::currencyType['after'];
     public $measure = self::measure['kg'];
-    public $measureStep = self::measureStep['pcs'];
+    // public $measureStep = self::measureStep['pcs'];
     
     #region Const
     public const currencyType = [

@@ -1,11 +1,14 @@
 <?php
 namespace App\Http\Classes;
 
-class MarketItem
+class MarketComponent
 {
-    public $type;
+    public $id;
+    public $logo;
+    public $name;
+    public $title;  
     /**
-     * @var MarketItem[] $markets
+     * @var MarketItem[] $products
      */
-    public $markets;
+    public $products;
 }
