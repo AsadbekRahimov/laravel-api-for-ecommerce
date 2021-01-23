@@ -26,9 +26,25 @@ use App\Http\Classes\ProductPage;
 
 class ProductPageController extends AppBaseController
 {
-    public function getProductPage( $request){
+    public function getProductPage(Request $request, $element_id){
         try {
-            $items= DB::table('shop_banner')->select(['id', 'image']);
+            $items= DB::table('shop_product')
+            ->leftJoin('shop_category', 'shop_product.shop_category_id', '=', 'shop_category.id')
+            ->leftJoin('user_company', 'shop_product.user_company_id', '=', 'user_company.id')
+            ->leftJoin('shop_brand', 'shop_product.shop_brand_id', '=', 'shop_brand.id')
+            ->select( 
+                'shop_product.name as product_name', 
+                'shop_product.title as product_title', 
+                'shop_product.package as product_package', 
+                'shop_product.shop_option as product_options', 
+                'shop_product.text as product_text', 
+                'shop_product.image as product_image', 
+                'shop_product.offer as product_offers',
+                'shop_product.rating as product_rating', 
+                'shop_category.name as product_category', 
+                'user_company.name as product_company',
+                'shop_brand.name as product_brand',  
+            )->get();
             $items=$this->filter_items($request, $items); 
             
             foreach($items as $item){
@@ -40,7 +56,7 @@ class ProductPageController extends AppBaseController
             if ($items->isEmpty()) {
                 return $this->sendError('Shop Banner not found');
             }
-            return $this->sendResponse($items->toArray(), 'Shop Banners retrieved successfully');
+            return $this->sendResponse($items->toArray(), 'Product retrieved successfully');
         } catch (Exception $e) {
             return $this->sendError('System error: '.$e->getMessage());            
         }
