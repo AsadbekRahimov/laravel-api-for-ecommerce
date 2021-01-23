@@ -32,17 +32,20 @@ class HomePageController extends AppBaseController
          * Banners
          */
         $homePage = new HomePage();
-
-        $banner_types=array('carouselBanner', 'bannerOne', 'bannerTwo', 'bannerSectionOne', 'bannerSectionFour', 'bannerSectionFive', 'bannerDivider');
-        $homePage->banners_component=DB::table('shop_banner')->select('id','type','image','link')->where('type', '<>', '')->get()
+        $banner_types=array('carouselBanner', 'bannerOne', 'bannerTwo', 'bannerSectionOne', 'bannerSectionFour', 'bannerSectionFive', 'bannerDivider',
+            'catalogOne', 'catalogTwo', 'catalogThree', 'catalogFive');
+        $homePage->banners_component=DB::table('shop_banner')->select('id','type','image','link', 'user_company_id')->where('type', '<>', '')->get()
             ->groupBy('type')->map(function ($group) use($banner_types){     
-                return $group->map(function ($value) use ($banner_types) {                                
+                return $group->map(function ($value) use ($banner_types) {  
+                    $category=DB::table('shop_category')->where('shop_banner_id', $value->id)->select('id')->first();                              
                     if (in_array($value->type, $banner_types)) {
                         $bannerItem = new BannerItem();
                         if($value->image){
                             $value->image=$this->getImagePath('ShopBanner', $value->id, $value->image);
                         }
                         $bannerItem->id=$value->id;
+
+                        $bannerItem->category_id=($category)?$category->id: null;
                         $bannerItem->image=$value->image;
                         $bannerItem->link=$value->link;
                         return $bannerItem;
@@ -77,39 +80,60 @@ class HomePageController extends AppBaseController
                 return $categoryItem;
             })->chunk(6);
         
-            
-        
+        $homePage->products_component = DB::table('shop_element')->select('id', 'shop_product_id', 'shop_category_id', 'catalog_cheapest', 'name', 'tags', 'rating')->inRandomOrder()->limit(1000)->get()
+        ->map(function ($item) {
+            $product=DB::table('shop_product')->where('id', $item->shop_product_id)->select('id', 'image', 'measure')->first();                
+            $catalog=DB::table('shop_catalog')->where('id', $item->catalog_cheapest)->select('id', 'price', 'price_old', 'currency', 'amount')->first();
+            // $category=DB::table('shop_category')->where('id', $item->shop_category_id)->select('id')->first();
+            // dd($item);
+            if($product && $catalog){
+                $productItem=new ProductItem();
+                $productItem->id=$item->id;
+                $productItem->category_id=$item->shop_category_id;
+                $productItem->name=$item->name;
+                $productItem->image=$this->getImagePath('ShopProduct', $product->id, $product->image);
+                // $productItem->discount=$item->discount;
+                $productItem->amount=$catalog->amount;
+                $productItem->tag=(strcmp($item->tags, '""') !== 0)?json_decode($item->tags):null;
+                $productItem->rating=$item->rating;
+                $productItem->current_price=$catalog->price;
+                $productItem->old_price=$catalog->price_old;
+                $productItem->currency=$catalog->currency;
+                $productItem->measure=$product->measure;
+                return $productItem;
+            }else{
+                // continue;
+            }            
+        });//->groupBy('category_id');
 
-        
+        $homePage->markets_component[] = DB::table('shop_catalog as catalog')
+        ->join('user_company as company', 'company.id', '=', 'catalog.user_company_id')
+        ->join('shop_element as element', 'element.id', '=', 'catalog.shop_element_id')
+        ->join('shop_product as product', 'product.id', '=', 'element.shop_product_id')
+        ->select('element.id as element_id', 'product.id as product_id','company.id as company_id', 'company.name as company_name', 
+        'company.text_short as company_text', 'company.rating', 'company.photo as company_logo', 'product.image as product_image', 'catalog.price as product_price')
+        ->inRandomOrder()->get()->groupBy('company_id')
+        ->map(function ($company) {
+            $marketComponent=new MarketComponent();
+            $all = $company->map(function ($product) use($marketComponent) {                
+                $marketComponent->logo=$this->getImagePath('UserCompany', $product->company_id, $product->company_logo);
+                $marketComponent->name=$product->company_name;
+                $marketComponent->title=$product->company_text;
+                $marketItem=new MarketItem();
+                $marketItem->id=$product->element_id;
+                $marketItem->image=$this->getImagePath('ShopProduct', $product->product_id, $product->product_image);
+                $marketItem->price=$product->product_price;
+                $marketComponent->products[]=$marketItem;
+            });
+            return $marketComponent;
+        });
+
         return $this->sendResponse($homePage, 'Home Page retrieved successfully');
     }
     public function testHomePage(){
 
         $homePage = new HomePage();
-        $product_types=array("bestSeller", "premium", "hotSelling", "new");
-        $homePage->catalogs_component[] = DB::table('shop_element')->select('id', 'shop_product_id', 'catalog_cheapest', 'name', 'tags')->get()
-            ->map(function ($item) use($product_types){
-                $product=DB::table('shop_product')->where('id', $item->shop_product_id)->select('id', 'image', 'measure')->first();                
-                $catalog=DB::table('shop_catalog')->where('id', $item->catalog_cheapest)->select('id', 'price', 'price_old', 'currency')->first();
-                // dd($product);
-                if($product && $catalog){
-                    $productItem=new ProductItem();
-                    $productItem->id=$item->id;
-                    $productItem->name=$item->name;
-                    $productItem->image=$this->getImagePath('ShopProduct', $product->id, $product->image);
-                    // $productItem->discount=$item->discount;
-                    $productItem->tags=$item->tags;
-                    // $productItem->rating=$item->rating;
-                    $productItem->current_price=$catalog->price;
-                    $productItem->old_price=$catalog->price_old;
-                    $productItem->currency=$catalog->currency;
-                    // $productItem->currencyType=$item->currencyType;
-                    $productItem->measure=$product->measure;
-                    // $productItem->measureStep=$item->measureStep;
-                    return $productItem;
-                }
-                
-            });
+        
         return $this->sendResponse($homePage, 'Home Page retrieved successfully');
 
     }

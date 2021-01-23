@@ -8,13 +8,13 @@ class HomePage extends Page
      * @var CatalogComponent[] $catalogs_component
      * 
      */
-    public $catalogs_component;
+    // public $catalogs_component;
     /**
-     * @var BannerComponent[] $banners_component
+     * @var BannerItem[] $banners_component
      */
     public $banners_component;
     /**
-     * @var ProductComponent[] $products_component
+     * @var ProductItem[] $products_component
      */
     public $products_component;
     /**
