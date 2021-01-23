@@ -1,0 +1,84 @@
+Index: app/Http/Controllers/API/V1/HomePageController.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace App\\Http\\Controllers\\API\\V1;\r\n\r\nuse Illuminate\\Http\\Request;\r\nuse App\\Http\\Controllers\\AppBaseController;\r\nuse Response;\r\nuse Illuminate\\Support\\Facades\\DB;\r\nuse Exception;\r\n/**\r\n * Class shop_brandController\r\n * @package App\\Http\\Controllers\\API\r\n */\r\n\r\nclass HomePageController extends AppBaseController\r\n{\r\n    /**\r\n     * @return Response\r\n     *\r\n     * @SWG\\Get(\r\n     *      path=\"/homeShopBanners\",\r\n     *      summary=\"Get a listing of the shop_banner.\",\r\n     *      tags={\"HomePage\"},\r\n     *      description=\"Get shop_banner\",\r\n     *      produces={\"application/json\"},\r\n     *      @SWG\\Response(\r\n     *          response=200,\r\n     *          description=\"successful operation\",\r\n     *          @SWG\\Schema(\r\n     *              type=\"object\",\r\n     *              @SWG\\Property(\r\n     *                  property=\"success\",\r\n     *                  type=\"boolean\"\r\n     *              ),\r\n     *              @SWG\\Property(\r\n     *                  property=\"data\",\r\n     *                  type=\"array\",\r\n     *                  @SWG\\Items(ref=\"#/definitions/shop_banner\")\r\n     *              ),\r\n     *              @SWG\\Property(\r\n     *                  property=\"message\",\r\n     *                  type=\"string\"\r\n     *              )\r\n     *          )\r\n     *      )\r\n     * )\r\n     */\r\n    public function homeShopBanners(Request $request)\r\n    {\r\n        try {\r\n            $items= DB::table('shop_banner')->select(['id', 'image']);\r\n            $items=$this->filter_items($request, $items); \r\n            \r\n            foreach($items as $item){\r\n                // $item=(array)($item);\r\n                if($item->image){\r\n                    $item->image=$this->getImagePath('ShopBanner', $item->id, $item->image);\r\n                }\r\n            }\r\n            if ($items->isEmpty()) {\r\n                return $this->sendError('Shop Banner not found');\r\n            }\r\n            return $this->sendResponse($items->toArray(), 'Shop Banners retrieved successfully');\r\n        } catch (Exception $e) {\r\n            return $this->sendError('System error: '.$e->getMessage());            \r\n        }        \r\n    }\r\n\r\n     /**\r\n     * @return Response\r\n     *\r\n     * @SWG\\Get(\r\n     *      path=\"/homeShopCategories\",\r\n     *      summary=\"Get a listing of the shop_category.\",\r\n     *      tags={\"HomePage\"},\r\n     *      description=\"Get shop_category\",\r\n     *      produces={\"application/json\"},\r\n     *      @SWG\\Response(\r\n     *          response=200,\r\n     *          description=\"successful operation\",\r\n     *          @SWG\\Schema(\r\n     *              type=\"object\",\r\n     *              @SWG\\Property(\r\n     *                  property=\"success\",\r\n     *                  type=\"boolean\"\r\n     *              ),\r\n     *              @SWG\\Property(\r\n     *                  property=\"data\",\r\n     *                  type=\"array\",\r\n     *                  @SWG\\Items(ref=\"#/definitions/shop_category\")\r\n     *              ),\r\n     *              @SWG\\Property(\r\n     *                  property=\"message\",\r\n     *                  type=\"string\"\r\n     *              )\r\n     *          )\r\n     *      )\r\n     * )\r\n     */\r\n    public function homeShopCategories(Request $request)\r\n    {\r\n        try {\r\n            $items= DB::table('shop_category')->select(['id', 'icon', 'name']);\r\n            // if($request->has('search')){\r\n            //     $items=$items->where('name', 'like', '%'.$request['search'].'%');\r\n            // } \r\n            $items=$this->filter_items($request, $items); \r\n            \r\n            if ($items->isEmpty()) {\r\n                return $this->sendError('Shop Categories not found');\r\n            }\r\n            return $this->sendResponse($items->toArray(), 'Shop Categories retrieved successfully');\r\n        } catch (Exception $e) {\r\n            return $this->sendError('System error: '.$e->getMessage());            \r\n        } \r\n    }\r\n\r\n\r\n    /**\r\n     * @return Response\r\n     *\r\n     * @SWG\\Get(\r\n     *      path=\"/homeShopOffers\",\r\n     *      summary=\"Get a listing of the shop_offer.\",\r\n     *      tags={\"HomePage\"},\r\n     *      description=\"Get shop_offer\",\r\n     *      produces={\"application/json\"},\r\n     *      @SWG\\Response(\r\n     *          response=200,\r\n     *          description=\"successful operation\",\r\n     *          @SWG\\Schema(\r\n     *              type=\"object\",\r\n     *              @SWG\\Property(\r\n     *                  property=\"success\",\r\n     *                  type=\"boolean\"\r\n     *              ),\r\n     *              @SWG\\Property(\r\n     *                  property=\"data\",\r\n     *                  type=\"array\",\r\n     *                  @SWG\\Items(ref=\"#/definitions/shop_offer\")\r\n     *              ),\r\n     *              @SWG\\Property(\r\n     *                  property=\"message\",\r\n     *                  type=\"string\"\r\n     *              )\r\n     *          )\r\n     *      )\r\n     * )\r\n     */\r\n\r\n    public function homeShopOffers(Request $request)\r\n    {\r\n        try {\r\n            $items= DB::table('shop_offer')->select(['id', 'shop_catalog_id', 'name']);//->join('shop_catalog', 'shop_offer.shop_catalog_id','=', 'shop_catalog.id');\r\n            if($request->has('search')){\r\n                $items=$items->where('name', 'like', '%'.$request['search'].'%');\r\n            } \r\n            $items=$this->filter_items($request, $items); \r\n            \r\n            // foreach($items as $item){\r\n            //     $item=(array)($item);\r\n            //     if($item['image']){\r\n            //         $item['image']=$this->getImagePath('ShopCategory', $item['id'], $item['image']);\r\n            //     }\r\n            // }\r\n            if ($items->isEmpty()) {\r\n                return $this->sendError('Shop Offers not found');\r\n            }\r\n            return $this->sendResponse($items->toArray(), 'Shop Offers retrieved successfully');\r\n        } catch (Exception $e) {\r\n            return $this->sendError('System error: '.$e->getMessage());            \r\n        } \r\n    }\r\n\r\n\r\n\r\n\r\n    \r\n    \r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/Http/Controllers/API/V1/HomePageController.php	(revision 7ac4f0d38664ed01b75727d08d7c52af072fee9d)
++++ app/Http/Controllers/API/V1/HomePageController.php	(date 1610777399157)
+@@ -49,8 +49,8 @@
+     {
+         try {
+             $items= DB::table('shop_banner')->select(['id', 'image']);
+-            $items=$this->filter_items($request, $items); 
+-            
++            $items=$this->filter_items($request, $items);
++
+             foreach($items as $item){
+                 // $item=(array)($item);
+                 if($item->image){
+@@ -62,8 +62,8 @@
+             }
+             return $this->sendResponse($items->toArray(), 'Shop Banners retrieved successfully');
+         } catch (Exception $e) {
+-            return $this->sendError('System error: '.$e->getMessage());            
+-        }        
++            return $this->sendError('System error: '.$e->getMessage());
++        }
+     }
+ 
+      /**
+@@ -103,16 +103,16 @@
+             $items= DB::table('shop_category')->select(['id', 'icon', 'name']);
+             // if($request->has('search')){
+             //     $items=$items->where('name', 'like', '%'.$request['search'].'%');
+-            // } 
+-            $items=$this->filter_items($request, $items); 
+-            
++            // }
++            $items=$this->filter_items($request, $items);
++
+             if ($items->isEmpty()) {
+                 return $this->sendError('Shop Categories not found');
+             }
+             return $this->sendResponse($items->toArray(), 'Shop Categories retrieved successfully');
+         } catch (Exception $e) {
+-            return $this->sendError('System error: '.$e->getMessage());            
+-        } 
++            return $this->sendError('System error: '.$e->getMessage());
++        }
+     }
+ 
+ 
+@@ -154,9 +154,9 @@
+             $items= DB::table('shop_offer')->select(['id', 'shop_catalog_id', 'name']);//->join('shop_catalog', 'shop_offer.shop_catalog_id','=', 'shop_catalog.id');
+             if($request->has('search')){
+                 $items=$items->where('name', 'like', '%'.$request['search'].'%');
+-            } 
+-            $items=$this->filter_items($request, $items); 
+-            
++            }
++            $items=$this->filter_items($request, $items);
++
+             // foreach($items as $item){
+             //     $item=(array)($item);
+             //     if($item['image']){
+@@ -168,13 +168,13 @@
+             }
+             return $this->sendResponse($items->toArray(), 'Shop Offers retrieved successfully');
+         } catch (Exception $e) {
+-            return $this->sendError('System error: '.$e->getMessage());            
+-        } 
++            return $this->sendError('System error: '.$e->getMessage());
++        }
+     }
+ 
+ 
+ 
+ 
+-    
+-    
++
++
+ }
