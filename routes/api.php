@@ -26,6 +26,7 @@ Route::get('homeShopBanners', [App\Http\Controllers\API\V1\HomePageController::c
 Route::get('homeShopCategories', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopCategories']);
 Route::get('homeShopOffers', [App\Http\Controllers\API\V1\HomePageController::class, 'homeShopOffers']);
 Route::get('getHomePage', [App\Http\Controllers\API\V1\HomePageController::class, 'getHomePage']);
+Route::get('getProductPage', [App\Http\Controllers\API\V1\ProductPageController::class, 'getProductPage']);
 Route::get('testHomePage', [App\Http\Controllers\API\V1\HomePageController::class, 'testHomePage']);
 
 Route::get('searchPageWhile', [App\Http\Controllers\API\V1\SearchPageController::class, 'searchPageWhile']);
