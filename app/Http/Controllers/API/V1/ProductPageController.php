@@ -32,6 +32,7 @@ class ProductPageController extends AppBaseController
             ->leftJoin('shop_category', 'shop_product.shop_category_id', '=', 'shop_category.id')
             ->leftJoin('user_company', 'shop_product.user_company_id', '=', 'user_company.id')
             ->leftJoin('shop_brand', 'shop_product.shop_brand_id', '=', 'shop_brand.id')
+            ->leftJoin('shop_element', 'shop_product.id', '=', 'shop_element.shop_product_id')
             ->select( 
                 'shop_product.name as product_name', 
                 'shop_product.title as product_title', 
@@ -44,7 +45,7 @@ class ProductPageController extends AppBaseController
                 'shop_category.name as product_category', 
                 'user_company.name as product_company',
                 'shop_brand.name as product_brand',  
-            )->get();
+            )->where('shop_element.shop_product_id', '=', $element_id)->get();
             $items=$this->filter_items($request, $items); 
             
             foreach($items as $item){
